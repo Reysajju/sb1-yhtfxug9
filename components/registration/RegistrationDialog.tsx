@@ -92,11 +92,11 @@ export function RegistrationDialog({ open, onOpenChange }: RegistrationDialogPro
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] h-[90vh] sm:h-auto overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">Join MagnatesEmpire</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 pb-6">
           <div className="space-y-2">
             <Label htmlFor="fullName">Full Name</Label>
             <Input
@@ -132,7 +132,7 @@ export function RegistrationDialog({ open, onOpenChange }: RegistrationDialogPro
             {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="stateProvince">State/Province</Label>
               <Input
@@ -226,7 +226,7 @@ export function RegistrationDialog({ open, onOpenChange }: RegistrationDialogPro
 
           <Button
             type="submit"
-            className="w-full bg-yellow-400 text-black hover:bg-yellow-500"
+            className="w-full bg-yellow-400 text-black hover:bg-yellow-500 mt-6"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Processing..." : "Submit"}
