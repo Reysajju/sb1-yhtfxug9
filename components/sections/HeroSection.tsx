@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 
@@ -25,17 +25,6 @@ interface HeroSectionProps {
 
 export function HeroSection({ onGetStarted }: HeroSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    setCursorPosition({ x: e.clientX, y: e.clientY });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [handleMouseMove]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,12 +35,6 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="custom-cursor"
-        style={{
-          transform: `translate(${cursorPosition.x - 10}px, ${cursorPosition.y - 10}px) scale(${isHovering ? 1.5 : 1})`,
-        }}
-      />
       <div
         className="absolute inset-0 transition-opacity duration-1000"
         style={{
@@ -74,8 +57,6 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
         <Button
           size="lg"
           onClick={onGetStarted}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
           className="bg-yellow-500 hover:bg-yellow-400 text-black text-lg px-8 py-6 rounded-full
                    transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-500/50"
         >
